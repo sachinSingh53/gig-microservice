@@ -4,13 +4,14 @@ import express from 'express';
 const app = express();
 
 const init = async()=>{
-    databaseConnection();
-    // return await start(app);
-    start(app);
+    await databaseConnection();
+    return await start(app);
+    // start(app);
 }
 
 
-init();
-// const userChannel = await init();
 
-// export{userChannel};
+const gigChannel = await init();
+
+
+export{gigChannel};

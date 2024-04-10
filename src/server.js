@@ -7,7 +7,8 @@ import bodyParser from 'body-parser';
 import { winstonLogger } from '../../9-jobber-shared/src/logger.js';
 import { CustomError } from '../../9-jobber-shared/src/errors.js';
 import { appRoutes } from './routes.js';
-import{checkConnection} from './elasticsearch.js'
+import{checkConnection, createIndex} from './elasticsearch.js';
+import{createConnection} from './queues/connection.js';
 
 
 const log = winstonLogger('GigServer', 'debug');
@@ -43,12 +44,12 @@ function routesMiddleware(app) {
 
 async function startQueues() {
     try {
-        // const userChannel = await createConnection();
+        const gigChannel = await createConnection();
         // await consumeBuyerDirectMessage(userChannel);
         // await consumeSellerDirectMessage(userChannel);
         // await consumeReviewFanoutMessage(userChannel);
         // await consumeSeedGigDirectMessages(userChannel);
-        // return userChannel;
+        return gigChannel;
         
     } catch (error) {
         log.error('error in startQueues() in server.js ', error, '');
@@ -58,6 +59,7 @@ async function startQueues() {
 
 function startElasticSearch(){
     checkConnection();
+    createIndex('gigs');
 }
 
 
@@ -88,13 +90,13 @@ async function start(app) {
     securityMiddleware(app);
     standardMiddleware(app);
     routesMiddleware(app);
-    // const userChannel = await startQueues();
+    const gigChannel = await startQueues();
     startElasticSearch();
 
     errorHandler(app);
     startServer(app);
 
-    // return userChannel;
+    return gigChannel;
 }
 
 

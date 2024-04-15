@@ -1,4 +1,4 @@
-import { date } from 'joi';
+
 import mongoose, { Schema } from 'mongoose';
 
 const gigSchema = new Schema(

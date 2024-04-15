@@ -1,12 +1,16 @@
 import { databaseConnection } from "./database.js"
+import { redisConnect } from "./redis/redis.connection.js";
 import { start } from "./server.js";
 import express from 'express';
 const app = express();
 
 const init = async()=>{
     await databaseConnection();
-    return await start(app);
+    const gigChannel = await start(app);
     // start(app);
+    redisConnect();
+    return gigChannel;
+
 }
 
 

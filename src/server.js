@@ -9,6 +9,7 @@ import { CustomError } from '../../9-jobber-shared/src/errors.js';
 import { appRoutes } from './routes.js';
 import{checkConnection, createIndex} from './elasticsearch.js';
 import{createConnection} from './queues/connection.js';
+import { consumeGigDirectMessage, consumeSeedDirectMessage } from './queues/gig-consumer.js';
 
 
 const log = winstonLogger('GigServer', 'debug');
@@ -45,10 +46,8 @@ function routesMiddleware(app) {
 async function startQueues() {
     try {
         const gigChannel = await createConnection();
-        // await consumeBuyerDirectMessage(userChannel);
-        // await consumeSellerDirectMessage(userChannel);
-        // await consumeReviewFanoutMessage(userChannel);
-        // await consumeSeedGigDirectMessages(userChannel);
+        await consumeGigDirectMessage(gigChannel);
+        await consumeSeedDirectMessage(gigChannel);
         return gigChannel;
         
     } catch (error) {

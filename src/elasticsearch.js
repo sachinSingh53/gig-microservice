@@ -77,7 +77,7 @@ async function updateIndexedData(index, itemId, gigDocument) {
         log.log('error', 'gigService elasticsearch updateIndexedData() method:', error);
     }
 }
-async function deleteIndexedData(index, itemId, gigDocument) {
+async function deleteIndexedData(index, itemId) {
     try {
         await elasticSearchClient.delete({
             index,

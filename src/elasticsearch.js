@@ -53,6 +53,16 @@ async function getIndexedData(index, itemId) {
         return {};
     }
 }
+async function getDocumentCount(index) {
+    try {
+        const result = await elasticSearchClient.count({ index});
+        return result.count;
+    } catch (error) {
+        log.log('error', 'gigService elasticsearch getDocumentCount() method:', error);
+
+        return 0;
+    }
+}
 async function addDataToIndex(index, itemId, gigDocument) {
     try {
         await elasticSearchClient.index({
@@ -97,5 +107,6 @@ export {
     getIndexedData,
     addDataToIndex,
     updateIndexedData,
-    deleteIndexedData
+    deleteIndexedData,
+    getDocumentCount
 };

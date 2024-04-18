@@ -6,11 +6,6 @@ const gigCreateSchema = Joi.object().keys({
     'string.empty': 'Seller Id is required',
     'any.required': 'Seller Id is required'
   }),
-  profilePicture: Joi.string().required().messages({
-    'string.base': 'Please add a profile picture',
-    'string.empty': 'Profile picture is required',
-    'any.required': 'Profile picture is required'
-  }),
   title: Joi.string().required().messages({
     'string.base': 'Please add a gig title',
     'string.empty': 'Gig title is required',

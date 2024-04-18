@@ -1,5 +1,5 @@
 import { winstonLogger } from "../../../9-jobber-shared/src/logger.js";
-import { updateGigReview } from "../services/gig-service.js";
+import { seedData, updateGigReview } from "../services/gig-service.js";
 import { createConnection } from "./connection.js";
 
 const log = winstonLogger('gigServiceConsumer','debug');
@@ -40,7 +40,11 @@ async function consumeSeedDirectMessage(channel) {
         const jobberQueue = await channel.assertQueue(queueName, { durable: true, autoDelete: false });
         await channel.bindQueue(jobberQueue.queue, exchangeName, routingKey);
         channel.consume(jobberQueue.queue, async (msg) => {
-            //Add seed function here
+            
+            const {sellers,count} = JSON.parse(msg.content.toString());
+
+            seedData(sellers,count);
+            channel.ack(msg);
         })
     } catch (error) {
         log.log('error', 'GigService UserConsumer consumeGigDirectMessage() method error', error);

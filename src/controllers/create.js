@@ -15,7 +15,8 @@ const gig = async (req, res) => {
     if (!result.public_id) {
         throw new BadRequestError('File upload error try again', 'create gig method');
     }
-    const count = getDocumentCount('gigs');
+    const count = await getDocumentCount('gigs');
+    console.log(count);
     const gig = {
         sellerId: req.body.sellerId,
         username: req.currentUser.username,

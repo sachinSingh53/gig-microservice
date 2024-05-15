@@ -46,7 +46,6 @@ const gigUpdate = async (req, res) => {
 
 const gigUpdateActive = async(req,res)=>{
     const updatedgig = await updateActiveGigProp(req.params.gigId,req.body.isActive);
-    console.log(req.body);
     res.status(StatusCodes.OK).json({
         message:'gig updated successfully',
         gig:updatedgig

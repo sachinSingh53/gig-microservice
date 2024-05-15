@@ -65,7 +65,7 @@ function startElasticSearch(){
 
 function errorHandler(app) {
     app.use((err, req, res, next) => {
-        log.log('error', `UsersService ${err.comingFrom}`, err);
+        log.log('error', `GigService ${err.comingFrom}`, err);
         if (err instanceof CustomError) {
             res.status(err.statusCode).json(err.serializeErrors());
         }

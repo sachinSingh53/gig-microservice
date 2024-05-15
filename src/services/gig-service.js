@@ -54,7 +54,7 @@ const createGig = async (gigData) => {
         await addDataToIndex('gigs', `${data.id}`, data);
     }
 
-    return createdGig
+    return createdGig;
 }
 const deleteGig = async (gigId, sellerId) => {
     await GigModel.findByIdAndDelete(gigId);

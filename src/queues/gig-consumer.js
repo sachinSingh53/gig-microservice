@@ -1,8 +1,8 @@
-import { winstonLogger } from "../../../9-jobber-shared/src/logger.js";
+import { winstonLogger } from "@sachinsingh53/jobber-shared";
 import { seedData, updateGigReview } from "../services/gig-service.js";
 import { createConnection } from "./connection.js";
-
-const log = winstonLogger('gigServiceConsumer','debug');
+import config from "../config.js";
+const log = winstonLogger(`${config.ELASTIC_SEARCH_URL}`,'gigServiceConsumer','debug');
 
 async function consumeGigDirectMessage(channel) {
     try {

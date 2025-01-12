@@ -1,7 +1,7 @@
 import { gigUpdateSchema } from '../schemes/gig.js'
-import { uploads } from '../../../9-jobber-shared/src/cloudinaryUploader.js'
-import { isDataURL } from '../../../9-jobber-shared/src/helper.js'
-import { BadRequestError } from '../../../9-jobber-shared/src/errors.js'
+import { uploads } from '@sachinsingh53/jobber-shared'
+import { isDataURL } from '@sachinsingh53/jobber-shared'
+import { BadRequestError } from '@sachinsingh53/jobber-shared'
 import{ updateActiveGigProp, updateGig} from '../services/gig-service.js'
 import {StatusCodes} from 'http-status-codes'
 const gigUpdate = async (req, res) => {

@@ -1,7 +1,8 @@
+import config from '../config.js';
 import { client } from './redis.connection.js';
-import{winstonLogger} from '../../../9-jobber-shared/src/logger.js'
+import{winstonLogger} from '@sachinsingh53/jobber-shared'
 
-const log = winstonLogger('gigCache','debug');
+const log = winstonLogger(`${config.ELASTIC_SEARCH_URL}`,'gigCache','debug');
 
 const getUserSelectedGigCategory = async(key)=>{
     try {

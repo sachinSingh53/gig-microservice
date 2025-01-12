@@ -1,9 +1,9 @@
-import { gigCreateSchema } from '../schemes/gig.js'
-import { uploads } from '../../../9-jobber-shared/src/cloudinaryUploader.js'
-import { BadRequestError } from '../../../9-jobber-shared/src/errors.js'
-import{createGig} from '../services/gig-service.js'
-import {StatusCodes} from 'http-status-codes'
-import { getDocumentCount } from '../elasticsearch.js'
+import { gigCreateSchema } from '../schemes/gig.js';
+import { uploads } from '@sachinsingh53/jobber-shared';
+import { BadRequestError } from '@sachinsingh53/jobber-shared';
+import { createGig } from '../services/gig-service.js';
+import { StatusCodes } from 'http-status-codes';
+import { getDocumentCount } from '../elasticsearch.js';
 const gig = async (req, res) => {
     const { error } = gigCreateSchema.validate(req.body);
     if (error) {

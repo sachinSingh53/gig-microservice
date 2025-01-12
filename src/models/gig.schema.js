@@ -31,6 +31,7 @@ const gigSchema = new Schema(
     },
     {
         versionKey:false,
+
         //this will delete the _id field from the mongoose document and change it to id.
         
         /*we are doing this because we are storing this gig in elasticsearch as well and elasticsearch also contains the _id

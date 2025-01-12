@@ -1,9 +1,9 @@
 
-import { winstonLogger } from '../../../9-jobber-shared/src/logger.js';
+import { winstonLogger } from '@sachinsingh53/jobber-shared';
 import { createClient } from 'redis';
 import config from '../config.js';
 
-const log = winstonLogger('redisConnection', 'debug');
+const log = winstonLogger(`${config.ELASTIC_SEARCH_URL}`,'redisConnection', 'debug');
 
 const client = createClient({ url: `${config.REDIS_HOST}` });
 

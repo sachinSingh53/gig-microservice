@@ -4,15 +4,15 @@ import jwt from 'jsonwebtoken';
 import cors from 'cors';
 import compression from 'compression';
 import bodyParser from 'body-parser';
-import { winstonLogger } from '../../9-jobber-shared/src/logger.js';
-import { CustomError } from '../../9-jobber-shared/src/errors.js';
+import { winstonLogger } from '@sachinsingh53/jobber-shared';
+import { CustomError } from '@sachinsingh53/jobber-shared';
 import { appRoutes } from './routes.js';
 import{checkConnection, createIndex} from './elasticsearch.js';
 import{createConnection} from './queues/connection.js';
 import { consumeGigDirectMessage, consumeSeedDirectMessage } from './queues/gig-consumer.js';
 
 
-const log = winstonLogger('GigServer', 'debug');
+const log = winstonLogger(`${config.ELASTIC_SEARCH_URL}`, 'GigServer', 'debug');
 
 function securityMiddleware(app) {
     app.set('trust proxy', 1);

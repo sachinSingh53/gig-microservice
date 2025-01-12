@@ -1,4 +1,4 @@
-import{verifyGatewayRequest} from '../../9-jobber-shared/src/gateway-middleware.js'
+import{verifyGatewayRequest} from '@sachinsingh53/jobber-shared'
 import { gigRoutes } from "./routes/gig.js";
 const BASE_PATH = '/api/v1/gig';
 
